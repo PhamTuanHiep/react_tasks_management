@@ -1,0 +1,61 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Title 01",
+      "category": "Category01",
+      "state": "done",
+      "created": "16-6-2000",
+      "completed": "17-6-2000",
+      "userId":2
+    },
+    {
+      "id": 2,
+      "title": "Title 02",
+      "category": "Category02",
+      "state": "done",
+      "created": "16-6-2000",
+      "completed": "17-6-2000",
+      "userId":2
+    },
+    {
+      "id": 3,
+      "title": "Title 03",
+      "category": "Category03",
+      "state": "done",
+      "created": "16-6-2000",
+      "completed": "17-6-2000",
+      "userId":1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Huy",
+      "password": "12345",
+      "email": "user1@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 2,
+      "username": "Nam",
+      "password": "12345",
+      "email": "user2@gmail.com",
+      "phone": "0123456788"
+    },
+    {
+      "id": 3,
+      "username": "Minh",
+      "password": "12345",
+      "email": "user3@gmail.com",
+      "phone": "0123456788"
+    },
+    {
+      "username": "Thuong",
+      "password": "12345",
+      "email": "user4@gmail.com",
+      "phone": "0123456782",
+      "id": 4
+    }
+  ]
+}
