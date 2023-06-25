@@ -5,7 +5,7 @@ import {
   UserOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import Sider from "./Sider";
+import Sider from "./sider/Sider";
 import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";

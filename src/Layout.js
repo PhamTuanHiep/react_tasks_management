@@ -3,10 +3,10 @@ import App from "./App";
 import HomePage from "./homePage/HomePage";
 import TaskList from "./content/TaskList";
 import Login from "./authen/Login";
-import Register from "./authen/Register";
+import Logup from "./authen/Logup";
 import User from "./user/User";
-import UserInfo from "./user/UserInfo";
-import EditInfo from "./user/EditInfo";
+import UserInfo from "./user/userInfo/UserInfo";
+import EditInfo from "./user/editInfo/EditInfo";
 import DeleteUser from "./user/DeleteUser";
 const Layout = () => {
   return (
@@ -23,7 +23,7 @@ const Layout = () => {
         </Route>
 
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/logup" element={<Logup />} />
       </Routes>
     </>
   );

@@ -16,11 +16,6 @@ const UserInfo = () => {
   };
   return (
     <div className="user-info">
-      <Descriptions className="des1" title="Avatar" layout="vertical">
-        <Descriptions.Item span={1}>
-          <Image className="img" width={150} src={user.image.url} />
-        </Descriptions.Item>
-      </Descriptions>
       <Descriptions className="des2" title="User Info" layout="vertical">
         <Descriptions.Item label="UserName" span={3}>
           {user.username}

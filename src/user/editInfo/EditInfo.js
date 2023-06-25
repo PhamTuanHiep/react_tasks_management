@@ -1,6 +1,8 @@
-import { Button, Form, Input, InputNumber } from "antd";
-import "./Login.scss";
-const Login = () => {
+import { Button, Form, Input, InputNumber, Upload, Image } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import UploadImage from "./UploadImage";
+import { useState } from "react";
+const EditInfo = () => {
   const layout = {
     labelCol: {
       span: 8,
@@ -61,12 +63,24 @@ const Login = () => {
     },
   };
   /* eslint-enable no-template-curly-in-string */
-
+  const [img, setImg] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const normFile = (e) => {
+    console.log("e.file.thumbUrl:", e);
+    console.log("e.file:", e.fileList);
+    setFileList(e.fileList);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
   const onFinish = (values) => {
+    setImg(values.user.image[0].thumbUrl);
     console.log(values);
   };
+
   return (
-    <div id="val-login" className="validation-form">
+    <div id="val-edit" className="validation-form">
       <div className="val val-title ">
         REGISTER
         <span>wellcom to My Web</span>
@@ -79,6 +93,22 @@ const Login = () => {
         validateMessages={validateMessages}
         layout="vertical"
       >
+        <Form.Item
+          className="val-item"
+          name={["user", "name"]}
+          value="Ahih"
+          label="Name"
+          rules={[
+            {
+              required: true,
+              message: "User Name is valid",
+              pattern:
+                /^([a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)((\s{1}[a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)*$)/i,
+            },
+          ]}
+        >
+          <Input className="val-input" />
+        </Form.Item>
         <Form.Item
           className="val-item"
           name={["user", "email"]}
@@ -96,43 +126,41 @@ const Login = () => {
         </Form.Item>
         <Form.Item
           className="val-item"
-          name="password"
-          label="Password"
+          name={["user", "phone"]}
+          label="Phone"
           rules={[
             {
               required: true,
-              message: "Please input your password!",
-              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,32}$/g,
+              type: "string",
+              message: "Number phone is valid",
+              pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
             },
           ]}
-          hasFeedback
         >
-          <Input.Password className="val-input" />
+          <Input className="val-input" />
         </Form.Item>
+
         <Form.Item
           className="val-item"
-          name="confirm"
-          label="Confirm Password"
-          dependencies={["password"]}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("The new password that you entered do not match!")
-                );
-              },
-            }),
-          ]}
+          name={["user", "image"]}
+          label="Upload"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
         >
-          <Input.Password className="val-input" />
+          <Upload listType="picture-card">
+            {fileList.length >= 1 ? null : (
+              <div>
+                <PlusOutlined />
+                <div
+                  style={{
+                    marginTop: 8,
+                  }}
+                >
+                  Upload
+                </div>
+              </div>
+            )}
+          </Upload>
         </Form.Item>
         <Form.Item
           wrapperCol={{
@@ -144,8 +172,9 @@ const Login = () => {
             Submit
           </Button>
         </Form.Item>
+        <Image max-width={200} max-height={200} src={img} />
       </Form>
     </div>
   );
 };
-export default Login;
+export default EditInfo;

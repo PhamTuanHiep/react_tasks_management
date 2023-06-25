@@ -1,6 +1,6 @@
 import { Button, Form, Input, InputNumber } from "antd";
-import "./Login.scss";
-const Login = () => {
+import "./Logup.scss";
+const Logup = () => {
   const layout = {
     labelCol: {
       span: 8,
@@ -66,7 +66,7 @@ const Login = () => {
     console.log(values);
   };
   return (
-    <div id="val-login" className="validation-form">
+    <div id="val-logup" className="validation-form">
       <div className="val val-title ">
         REGISTER
         <span>wellcom to My Web</span>
@@ -81,6 +81,22 @@ const Login = () => {
       >
         <Form.Item
           className="val-item"
+          name={["user", "name"]}
+          value="Ahih"
+          label="Name"
+          rules={[
+            {
+              required: true,
+              message: "User Name is valid",
+              pattern:
+                /^([a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)((\s{1}[a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)*$)/i,
+            },
+          ]}
+        >
+          <Input className="val-input" />
+        </Form.Item>
+        <Form.Item
+          className="val-item"
           name={["user", "email"]}
           label="Email"
           rules={[
@@ -89,6 +105,21 @@ const Login = () => {
               message: "Email is valid",
               pattern:
                 /^(([^<>()\[\]\\.,;:\s@"]{2,}(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            },
+          ]}
+        >
+          <Input className="val-input" />
+        </Form.Item>
+        <Form.Item
+          className="val-item"
+          name={["user", "phone"]}
+          label="Phone"
+          rules={[
+            {
+              required: true,
+              type: "string",
+              message: "Number phone is valid",
+              pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
             },
           ]}
         >
@@ -148,4 +179,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default Logup;

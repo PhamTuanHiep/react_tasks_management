@@ -1,0 +1,46 @@
+#val-login.validation-form {
+  background-color: #af997a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 568px;
+  margin: auto;
+  padding: 15px;
+  height: 100vh;
+  .val {
+    margin: auto;
+    width: 100%;
+  }
+  .val-title {
+    margin: 16px auto;
+    align-items: center;
+    font-size: 28px;
+    display: flex;
+    flex-direction: column;
+    span {
+      font-size: 14px;
+    }
+  }
+  .val-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+    .val-item {
+      margin-left: auto;
+      margin-right: auto;
+
+      .val-input {
+        width: 400px;
+      }
+    }
+    .val-submit {
+      width: 200px;
+      line-height: 18px;
+      height: 40px;
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+}

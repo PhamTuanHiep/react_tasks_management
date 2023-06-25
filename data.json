@@ -34,21 +34,26 @@
       "username": "Huy",
       "password": "12345",
       "email": "user1@gmail.com",
-      "phone": "0123456789"
+      "phone": "0123456789",
+      "image":"https://i1.sndcdn.com/avatars-000437232558-yuo0mv-t200x200.jpg"
     },
     {
       "id": 2,
       "username": "Nam",
       "password": "12345",
       "email": "user2@gmail.com",
-      "phone": "0123456788"
+      "phone": "0123456788",
+      "image":"https://i1.sndcdn.com/avatars-000437232558-yuo0mv-t200x200.jpg"
+
     },
     {
       "id": 3,
       "username": "Minh",
       "password": "12345",
       "email": "user3@gmail.com",
-      "phone": "0123456788"
+      "phone": "0123456788",
+      "image":"https://i1.sndcdn.com/avatars-000437232558-yuo0mv-t200x200.jpg"
+
     },
     {
       "username": "Thuong",
