@@ -14,7 +14,7 @@ const UploadImage = (props) => {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
-  props.datatoParent(fileList);
+  // props.datatoParent(fileList);
 
   const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async (file) => {

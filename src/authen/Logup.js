@@ -1,5 +1,9 @@
 import { Button, Form, Input, InputNumber } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Logup.scss";
+import { useState } from "react";
+import { postNewUser } from "../services/apiService";
+import { toast } from "react-toastify";
 const Logup = () => {
   const layout = {
     labelCol: {
@@ -62,8 +66,22 @@ const Logup = () => {
   };
   /* eslint-enable no-template-curly-in-string */
 
-  const onFinish = (values) => {
-    console.log(values);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    let data = await postNewUser(username, password, email, phone, image);
+    console.log(data);
+    if (data.status === 201) {
+      toast.success("Successful account registration");
+      navigate("/");
+    } else {
+      toast.error("Account registration failed");
+    }
   };
   return (
     <div id="val-logup" className="validation-form">
@@ -93,7 +111,10 @@ const Logup = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -108,7 +129,10 @@ const Logup = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -123,7 +147,10 @@ const Logup = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            onChange={(e) => setPhone(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -138,7 +165,10 @@ const Logup = () => {
           ]}
           hasFeedback
         >
-          <Input.Password className="val-input" />
+          <Input.Password
+            className="val-input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -165,6 +195,11 @@ const Logup = () => {
         >
           <Input.Password className="val-input" />
         </Form.Item>
+        <span>
+          <NavLink to="/" className="nav-link">
+            Go Home
+          </NavLink>
+        </span>
         <Form.Item
           wrapperCol={{
             ...layout.wrapperCol,

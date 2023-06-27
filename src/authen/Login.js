@@ -1,6 +1,14 @@
 import { Button, Form, Input, InputNumber } from "antd";
+import { toast } from "react-toastify";
 import "./Login.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { doLogin } from "../redux/action/userAction";
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "../services/apiService";
+import axios from "axios";
 const Login = () => {
+  // handle validation
   const layout = {
     labelCol: {
       span: 8,
@@ -9,6 +17,18 @@ const Login = () => {
       span: 16,
     },
   };
+
+  var a = "AAAA";
+  var b = "BBBB";
+  var c = "CCCC";
+  var d = "DDDD";
+
+  const testDT = new FormData(); // axios
+  testDT.append("a", a);
+  testDT.append("b", b);
+  testDT.append("c", c);
+  testDT.append("d", d);
+  console.log("testDT: ", testDT);
 
   /* eslint-disable no-template-curly-in-string */
   const typeTemplate = "'${label}' is not a valid ${type}";
@@ -62,9 +82,32 @@ const Login = () => {
   };
   /* eslint-enable no-template-curly-in-string */
 
-  const onFinish = (values) => {
-    console.log(values);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [isLoading, setIsloading] = useState(false);
+
+  const onFinish = async (values) => {
+    let data = await getAllUsers();
+    let users = data.data;
+
+    let res = users.find((user) => {
+      return user.email === email && user.password === password;
+    });
+
+    if (res == undefined) {
+      toast.error("account login failed");
+      console.log("fail:", email + " & " + password);
+    } else {
+      dispatch(doLogin(res));
+      toast.success("successful account login");
+      navigate("/");
+
+      console.log("success:", email + " & " + password);
+    }
   };
+
   return (
     <div id="val-login" className="validation-form">
       <div className="val val-title ">
@@ -92,11 +135,14 @@ const Login = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
-          name="password"
+          name={["user", "password"]}
           label="Password"
           rules={[
             {
@@ -107,11 +153,14 @@ const Login = () => {
           ]}
           hasFeedback
         >
-          <Input.Password className="val-input" />
+          <Input.Password
+            className="val-input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
-          name="confirm"
+          name={["user", "confirm"]}
           label="Confirm Password"
           dependencies={["password"]}
           hasFeedback
@@ -122,7 +171,7 @@ const Login = () => {
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
+                if (!value || getFieldValue(["user", "password"]) === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
