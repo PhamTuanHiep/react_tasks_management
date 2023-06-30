@@ -1,7 +1,12 @@
 import { Button, Form, Input, InputNumber, Upload, Image } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import UploadImage from "./UploadImage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { store } from "../../redux/store";
+import { patchUser } from "../../services/apiService";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
 const EditInfo = () => {
   const layout = {
     labelCol: {
@@ -63,20 +68,62 @@ const EditInfo = () => {
     },
   };
   /* eslint-enable no-template-curly-in-string */
-  const [img, setImg] = useState("");
+  // const [img, setImg] = useState("");
   const [fileList, setFileList] = useState([]);
   const normFile = (e) => {
-    console.log("e.file.thumbUrl:", e);
-    console.log("e.file:", e.fileList);
+    // console.log("e.file.thumbUrl:", e);
+    // console.log("e.file:", e.fileList);
     setFileList(e.fileList);
     if (Array.isArray(e)) {
       return e;
     }
     return e?.fileList;
   };
-  const onFinish = (values) => {
-    setImg(values.user.image[0].thumbUrl);
-    console.log(values);
+  const dispatch = useDispatch();
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [image, setImage] = useState("");
+  // const [submit, setSubmit] = useState(false);
+  // useEffect(() => {
+  //   const user = store.getState().user.account;
+  //   let dt = patchUser(user.id, username, email, phone, image);
+  //   // setSubmit(false);
+  //   console.log("submit:", submit);
+  // }, [submit]);
+
+  // console.log(user);
+  // var username = "";
+  // var email = "";
+  // var phone = "";
+  // var image = "";
+
+  const onFinish = async (values) => {
+    // setUsername(values.user.name);
+    // setEmail(values.user.email);
+    // setPhone(values.user.phone);
+    // setImg(values.user.image[0].thumbUrl);
+    // setSubmit(true);
+    const user = store.getState().user.account;
+    const newUser = {
+      id: user.id,
+      username: values.user.name,
+      email: values.user.email,
+      phone: values.user.phone,
+      image: values.user.image[0].thumbUrl,
+    };
+    let dt = await patchUser(newUser);
+    console.log("setSubmit");
+    console.log("dt", typeof dt.status);
+    if (dt.status === 200) {
+      toast.success("Successfully updated");
+      dispatch(doLogin(newUser));
+    } else {
+      toast.error("Update failed");
+    }
+
+    // console.log(values);
+    // let dt =  await patchUser()
   };
 
   return (
@@ -107,7 +154,10 @@ const EditInfo = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            // onChange={(e) => setUsername(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -122,7 +172,10 @@ const EditInfo = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            // onChange={(e) => setEmail(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           className="val-item"
@@ -137,7 +190,10 @@ const EditInfo = () => {
             },
           ]}
         >
-          <Input className="val-input" />
+          <Input
+            className="val-input"
+            // onChange={(e) => setPhone(e.target.value)}
+          />
         </Form.Item>
 
         <Form.Item
@@ -147,7 +203,22 @@ const EditInfo = () => {
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
-          <Upload listType="picture-card">
+          <Upload
+            listType="picture-card"
+            // onChange={(e) => {
+            //   // if (e.file.status !== "uploading") {
+            //   //   let reader = new FileReader();
+            //   //   reader.onload = (e) => {
+            //   //     console.log(e.target.result);
+            //   //   };
+            //   //   reader.readAsText(e.file.originFileObj);
+            //   // }
+            //   // setImage(e.file.thumbUrl);
+            //   // var ob = e.file[0];
+            //   // console.log(typeof ob);
+            //   // console.log(ob);
+            // }}
+          >
             {fileList.length >= 1 ? null : (
               <div>
                 <PlusOutlined />
@@ -172,7 +243,7 @@ const EditInfo = () => {
             Submit
           </Button>
         </Form.Item>
-        <Image max-width={200} max-height={200} src={img} />
+        {/* <Image max-width={200} max-height={200} src={img} /> */}
       </Form>
     </div>
   );

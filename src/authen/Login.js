@@ -17,19 +17,6 @@ const Login = () => {
       span: 16,
     },
   };
-
-  var a = "AAAA";
-  var b = "BBBB";
-  var c = "CCCC";
-  var d = "DDDD";
-
-  const testDT = new FormData(); // axios
-  testDT.append("a", a);
-  testDT.append("b", b);
-  testDT.append("c", c);
-  testDT.append("d", d);
-  console.log("testDT: ", testDT);
-
   /* eslint-disable no-template-curly-in-string */
   const typeTemplate = "'${label}' is not a valid ${type}";
 
@@ -98,13 +85,10 @@ const Login = () => {
 
     if (res == undefined) {
       toast.error("account login failed");
-      console.log("fail:", email + " & " + password);
     } else {
       dispatch(doLogin(res));
       toast.success("successful account login");
       navigate("/");
-
-      console.log("success:", email + " & " + password);
     }
   };
 

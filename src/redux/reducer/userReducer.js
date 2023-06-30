@@ -19,6 +19,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
+          id: action?.payload?.id,
           username: action?.payload?.username,
           password: action?.payload?.password,
           email: action?.payload?.email,
@@ -31,6 +32,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
+          id: "",
           username: "",
           password: "",
           email: "",

@@ -2,8 +2,6 @@ import Header from "./header/Header";
 import { Outlet } from "react-router-dom";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
@@ -51,19 +49,6 @@ const App = () => {
         <Footer style={{ textAlign: "center" }}>
           Ant Design ©2023 Created by Ant UED
         </Footer>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        {/* Same as */}
       </Layout>
     </>
   );

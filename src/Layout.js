@@ -7,7 +7,10 @@ import Logup from "./authen/Logup";
 import User from "./user/User";
 import UserInfo from "./user/userInfo/UserInfo";
 import EditInfo from "./user/editInfo/EditInfo";
-import DeleteUser from "./user/DeleteUser";
+import ChangePass from "./user/ChangePass";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Layout = () => {
   return (
     <>
@@ -18,13 +21,26 @@ const Layout = () => {
           <Route path="user" element={<User />}>
             <Route path="info" element={<UserInfo />} />
             <Route path="edit_info" element={<EditInfo />} />
-            <Route path="deldete_user" element={<DeleteUser />} />
+            <Route path="change_pass" element={<ChangePass />} />
           </Route>
         </Route>
 
         <Route path="/login" element={<Login />} />
         <Route path="/logup" element={<Logup />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
     </>
   );
 };

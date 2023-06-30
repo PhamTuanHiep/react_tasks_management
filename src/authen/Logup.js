@@ -75,7 +75,6 @@ const Logup = () => {
 
   const onFinish = async (values) => {
     let data = await postNewUser(username, password, email, phone, image);
-    console.log(data);
     if (data.status === 201) {
       toast.success("Successful account registration");
       navigate("/");
