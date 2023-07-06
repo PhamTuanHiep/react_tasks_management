@@ -1,29 +1,46 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-const ModalDeleteUser = () => {
-  const [open, setOpen] = useState(false);
+import { store } from "../redux/store";
+import { deleteUser } from "../services/apiService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { doLogout } from "../redux/action/userAction";
+
+const ModalDeleteUser = (props) => {
+  const open = props.open;
+  const setOpen = props.setOpen;
+  const user = store.getState().user.account;
+  const naviagtion = useNavigate();
+  const dispath = useDispatch();
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
-  const showModal = () => {
-    setOpen(true);
+  const [modalText, setModalText] = useState(
+    "Do you want to delete your current account ?"
+  );
+
+  const handledDeleteUser = async () => {
+    let res = await deleteUser(user.id);
+    if (res.status === 200) {
+      setOpen(false);
+      toast.success("Successfully Deleted");
+      setConfirmLoading(false);
+      dispath(doLogout());
+      naviagtion("/");
+    } else {
+      toast.error("Delete Failed");
+    }
   };
   const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
+    setModalText("Deleting account...");
     setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
+    handledDeleteUser();
   };
   const handleCancel = () => {
-    console.log("Clicked cancel button");
+    // console.log("Clicked cancel button");
     setOpen(false);
   };
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal with async logic
-      </Button>
       <Modal
         title="Title"
         open={open}

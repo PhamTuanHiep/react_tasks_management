@@ -21,4 +21,24 @@ const patchUser = ({ id, ...rest }) => {
   // };
   return axios.patch(`http://localhost:3001/users/${id}`, rest);
 };
-export { getAllUsers, postNewUser, patchUser };
+const deleteUser = (id) => {
+  return axios.delete(`http://localhost:3001/users/${id}`);
+};
+const patchPassUser = ({ id, ...rest }) => {
+  return axios.patch(`http://localhost:3001/users/${id}`, rest);
+};
+const getUserTasks = (id) => {
+  return axios.get(`http://localhost:3001/tasks/?userId=${id}`);
+};
+const patchTask = ({ id, ...rest }) => {
+  return axios.patch(`http://localhost:3001/tasks/${id}`, rest);
+};
+export {
+  getAllUsers,
+  postNewUser,
+  patchUser,
+  deleteUser,
+  patchPassUser,
+  getUserTasks,
+  patchTask,
+};

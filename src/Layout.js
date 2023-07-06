@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import App from "./App";
 import HomePage from "./homePage/HomePage";
-import TaskList from "./content/TaskList";
+import TaskList from "./tasks/TaskList";
 import Login from "./authen/Login";
 import Logup from "./authen/Logup";
 import User from "./user/User";
@@ -10,6 +10,7 @@ import EditInfo from "./user/editInfo/EditInfo";
 import ChangePass from "./user/ChangePass";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ErrorPage from "./homePage/ErrorPage";
 
 const Layout = () => {
   return (
@@ -24,6 +25,8 @@ const Layout = () => {
             <Route path="change_pass" element={<ChangePass />} />
           </Route>
         </Route>
+
+        <Route path="/error" element={<ErrorPage />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/logup" element={<Logup />} />

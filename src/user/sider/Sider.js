@@ -20,26 +20,11 @@ const Sider = (drops) => {
   const user = store.getState().user.account;
 
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState(
-    "Would you like to delete account ?"
-  );
 
   const showModal = () => {
     setOpen(true);
   };
-  const handleOk = () => {
-    setModalText("Account be deleting...");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
-  };
+
   const items = [
     {
       key: "1",
@@ -89,15 +74,7 @@ const Sider = (drops) => {
         defaultSelectedKeys={["1"]}
         items={items}
       />
-      <Modal
-        title="Title"
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <p>{modalText}</p>
-      </Modal>
+      <ModalDeleteUser open={open} setOpen={setOpen} />
     </Sider>
   );
 };
