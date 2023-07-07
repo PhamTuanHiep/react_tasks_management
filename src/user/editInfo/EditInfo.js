@@ -143,7 +143,6 @@ const EditInfo = () => {
         <Form.Item
           className="val-item"
           name={["user", "name"]}
-          value="Ahih"
           label="Name"
           rules={[
             {
@@ -156,6 +155,8 @@ const EditInfo = () => {
         >
           <Input
             className="val-input"
+            values={"aàấafasd"}
+
             // onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>

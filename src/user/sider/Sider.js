@@ -20,7 +20,7 @@ const Sider = (drops) => {
   const user = store.getState().user.account;
 
   const [open, setOpen] = useState(false);
-
+  const [currentMenu, setCurrentMenu] = useState("1");
   const showModal = () => {
     setOpen(true);
   };
@@ -63,16 +63,36 @@ const Sider = (drops) => {
       ),
     },
   ];
+  const handleClickMenu = (e) => {
+    if (e.key != "4") {
+      sessionStorage.setItem("currentMenu", e.key);
+    }
+  };
   return (
     <Sider id="sider" trigger={null} collapsible collapsed={collapsed}>
       <div className="demo-logo-vertical" />
-      <Image max-width={200} max-height={200} src={user.image} />
+
+      <Image
+        max-width={200}
+        max-height={200}
+        src={
+          user.image
+            ? user.image
+            : "https://i1.sndcdn.com/avatars-000437232558-yuo0mv-t500x500.jpg"
+        }
+        alt="avatar "
+      />
       <Menu
         className="menu"
         theme="dark"
         mode="vertical"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={[
+          sessionStorage.getItem("currentMenu")
+            ? sessionStorage.getItem("currentMenu")
+            : "1",
+        ]}
         items={items}
+        onClick={(e) => handleClickMenu(e)}
       />
       <ModalDeleteUser open={open} setOpen={setOpen} />
     </Sider>

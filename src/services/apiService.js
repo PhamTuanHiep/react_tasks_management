@@ -33,6 +33,12 @@ const getUserTasks = (id) => {
 const patchTask = ({ id, ...rest }) => {
   return axios.patch(`http://localhost:3001/tasks/${id}`, rest);
 };
+const postTask = ({ ...rest }) => {
+  return axios.post("http://localhost:3001/tasks", rest);
+};
+const deleteTask = (id) => {
+  return axios.delete(`http://localhost:3001/tasks/${id}`);
+};
 export {
   getAllUsers,
   postNewUser,
@@ -41,4 +47,6 @@ export {
   patchPassUser,
   getUserTasks,
   patchTask,
+  postTask,
+  deleteTask,
 };

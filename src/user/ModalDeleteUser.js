@@ -26,6 +26,9 @@ const ModalDeleteUser = (props) => {
       setConfirmLoading(false);
       dispath(doLogout());
       naviagtion("/");
+      // localStorage.removeItem(key);
+
+      sessionStorage.clear();
     } else {
       toast.error("Delete Failed");
     }

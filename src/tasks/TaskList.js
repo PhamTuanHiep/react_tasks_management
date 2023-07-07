@@ -15,11 +15,15 @@ import { useEffect, useState } from "react";
 import { getUserTasks, patchTask } from "../services/apiService";
 import "./TaskList.scss";
 import { toast } from "react-toastify";
-import AddTaskModal from "./AddTaskModal";
+import ModalAddTask from "./ModalAddTask";
+import ModalDeleteTask from "./ModalDeleteTask";
+
 const TaskList = () => {
   const [inputValue, setInputValue] = useState("");
   const [cateValue, setCateValue] = useState("");
   const [numUpdate, setNumUpdate] = useState("");
+  const [numDelete, setNumDelete] = useState("");
+
   const [submitUpdate, setSubmitUpdate] = useState(false);
   const [data, setData] = useState([
     {
@@ -34,10 +38,11 @@ const TaskList = () => {
   ]);
   const [defaultTasks, setDefaultTasks] = useState([]);
   const CheckboxGroup = Checkbox.Group;
-  const doLabelOptions = ["Done", "Doing", "Do Not"];
+  const doOptions = ["Done", "Doing", "Do Not"];
   const [checked, SetChecked] = useState("");
   const [newTask, setNewTask] = useState({});
-  const [open, setOpen] = useState(false);
+  const [openModalAdd, setOpenModalAdd] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
 
   const columns = [
     {
@@ -134,7 +139,7 @@ const TaskList = () => {
         return ob.key === numUpdate ? (
           <CheckboxGroup
             className="check-box-group"
-            options={doLabelOptions}
+            options={doOptions}
             // defaultValue={ob.status}
             value={checked ? checked : ob.status}
             onChange={handleCheckbox}
@@ -199,7 +204,7 @@ const TaskList = () => {
             <Button
               type="primary"
               danger
-              onClick={(e) => handleUpCancelSubmit(e)}
+              onClick={(e) => handleCancelSubmit(e)}
             >
               Cancel
             </Button>
@@ -265,19 +270,18 @@ const TaskList = () => {
   const handleDeleteTask = (e, id) => {
     // console.log(e.target);
     // console.log("id:", id);
+    setNumDelete(id);
+    setOpenModalDelete(true);
   };
   const handleUpdateTask = (e, idItem) => {
-    // console.log(e.target);
-    // console.log("idItem:", idItem);
     setNumUpdate(idItem);
     setNewTask({ id: idItem });
   };
   const handleAddTask = () => {
-    setOpen(true);
+    setOpenModalAdd(true);
   };
 
   const handleUpdateSubmit = async (e) => {
-    // console.log(e.target);
     console.log("newTask:", newTask);
     setSubmitUpdate(true);
     let res = await patchTask(newTask);
@@ -289,7 +293,7 @@ const TaskList = () => {
     setNumUpdate("");
     setNewTask({});
   };
-  const handleUpCancelSubmit = () => {
+  const handleCancelSubmit = () => {
     setNumUpdate("");
     setNewTask({});
   };
@@ -307,7 +311,17 @@ const TaskList = () => {
           // pageSizeOptions: ["5", "10", "20", "30"],
         }}
       />
-      <AddTaskModal open={open} setOpen={setOpen} />
+      <ModalAddTask
+        openModalAdd={openModalAdd}
+        setOpenModalAdd={setOpenModalAdd}
+        getTasks={getTasks}
+      />
+      <ModalDeleteTask
+        openModalDelete={openModalDelete}
+        setOpenModalDelete={setOpenModalDelete}
+        getTasks={getTasks}
+        numDelete={numDelete}
+      />
     </div>
   );
 };

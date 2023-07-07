@@ -1,6 +1,6 @@
 import { Anchor } from "antd";
 import { Menu, Button, Dropdown, Space } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   SettingOutlined,
@@ -31,17 +31,24 @@ const Header = () => {
     {
       key: "3",
       label: (
-        <NavLink to="/user" className="nav-link">
+        <NavLink to="/user/info" className="nav-link">
           User
         </NavLink>
       ),
     },
   ];
-  const [current, setCurrent] = useState("1");
+  // const [current, setCurrent] = useState("1");
+  // useEffect(() => {
+  //   sessionStorage.getItem("currentNav")
+  //     ? setCurrent(sessionStorage.getItem("currentNav"))
+  //     : true;
+  // }, []);
 
   const handleNav = (e) => {
     console.log("click ", e);
-    setCurrent(e.key);
+    sessionStorage.setItem("currentNav", e.key);
+
+    // setCurrent(e.key);
   };
   const handleLogin = () => {
     navigate("/login");
@@ -78,7 +85,11 @@ const Header = () => {
       <Menu
         className="nav"
         onClick={handleNav}
-        selectedKeys={[current]}
+        selectedKeys={[
+          sessionStorage.getItem("currentNav")
+            ? sessionStorage.getItem("currentNav")
+            : "1",
+        ]}
         mode="horizontal"
         items={items}
       />
