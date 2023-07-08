@@ -11,17 +11,39 @@ import ChangePass from "./user/ChangePass";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./homePage/ErrorPage";
+import PrivateRoute from "./authen/PrivateRoute";
+import { useState } from "react";
 
 const Layout = () => {
+  const [stateEdit, setStateEdit] = useState(false);
   return (
     <>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route path="tasks" element={<TaskList />} />
-          <Route path="user" element={<User />}>
+          <Route
+            path="tasks"
+            element={
+              <PrivateRoute>
+                <TaskList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="user"
+            element={
+              <PrivateRoute>
+                <User />
+              </PrivateRoute>
+            }
+          >
             <Route path="info" element={<UserInfo />} />
-            <Route path="edit_info" element={<EditInfo />} />
+            <Route
+              path="edit_info"
+              element={
+                <EditInfo stateEdit={stateEdit} setStateEdit={setStateEdit} />
+              }
+            />
             <Route path="change_pass" element={<ChangePass />} />
           </Route>
         </Route>

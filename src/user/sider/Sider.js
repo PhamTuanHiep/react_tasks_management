@@ -68,6 +68,7 @@ const Sider = (drops) => {
       sessionStorage.setItem("currentMenu", e.key);
     }
   };
+  console.log("open:", open);
   return (
     <Sider id="sider" trigger={null} collapsible collapsed={collapsed}>
       <div className="demo-logo-vertical" />

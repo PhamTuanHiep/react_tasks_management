@@ -8,8 +8,7 @@ import { useDispatch } from "react-redux";
 import { doLogout } from "../redux/action/userAction";
 
 const ModalDeleteUser = (props) => {
-  const open = props.open;
-  const setOpen = props.setOpen;
+  const { open, setOpen } = props;
   const user = store.getState().user.account;
   const naviagtion = useNavigate();
   const dispath = useDispatch();

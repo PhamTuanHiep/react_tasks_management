@@ -73,7 +73,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [isLoading, setIsloading] = useState(false);
 
   const onFinish = async (values) => {
     let data = await getAllUsers();
@@ -88,14 +87,14 @@ const Login = () => {
     } else {
       dispatch(doLogin(res));
       toast.success("successful account login");
-      navigate("/");
+      navigate(-1);
     }
   };
 
   return (
     <div id="val-login" className="validation-form">
       <div className="val val-title ">
-        REGISTER
+        Sign in to experience all the features
         <span>wellcom to My Web</span>
       </div>
       <Form

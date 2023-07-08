@@ -7,7 +7,10 @@ import { patchUser } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
-const EditInfo = () => {
+import { useNavigate } from "react-router-dom";
+
+const EditInfo = (props) => {
+  const { stateEdit, setStateEdit } = props;
   const layout = {
     labelCol: {
       span: 8,
@@ -68,7 +71,7 @@ const EditInfo = () => {
     },
   };
   /* eslint-enable no-template-curly-in-string */
-  // const [img, setImg] = useState("");
+
   const [fileList, setFileList] = useState([]);
   const normFile = (e) => {
     // console.log("e.file.thumbUrl:", e);
@@ -80,30 +83,9 @@ const EditInfo = () => {
     return e?.fileList;
   };
   const dispatch = useDispatch();
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [image, setImage] = useState("");
-  // const [submit, setSubmit] = useState(false);
-  // useEffect(() => {
-  //   const user = store.getState().user.account;
-  //   let dt = patchUser(user.id, username, email, phone, image);
-  //   // setSubmit(false);
-  //   console.log("submit:", submit);
-  // }, [submit]);
-
-  // console.log(user);
-  // var username = "";
-  // var email = "";
-  // var phone = "";
-  // var image = "";
-
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
   const onFinish = async (values) => {
-    // setUsername(values.user.name);
-    // setEmail(values.user.email);
-    // setPhone(values.user.phone);
-    // setImg(values.user.image[0].thumbUrl);
-    // setSubmit(true);
     const user = store.getState().user.account;
     const newUser = {
       id: user.id,
@@ -117,13 +99,14 @@ const EditInfo = () => {
     console.log("dt", typeof dt.status);
     if (dt.status === 200) {
       toast.success("Successfully updated");
+      // reset user in local
       dispatch(doLogin(newUser));
+      //clear Inputs
+      form.resetFields();
+      setStateEdit(true);
     } else {
       toast.error("Update failed");
     }
-
-    // console.log(values);
-    // let dt =  await patchUser()
   };
 
   return (
@@ -133,6 +116,7 @@ const EditInfo = () => {
         <span>wellcom to My Web</span>
       </div>
       <Form
+        form={form}
         className="val val-form "
         {...layout}
         name="nest-messages"
@@ -155,8 +139,7 @@ const EditInfo = () => {
         >
           <Input
             className="val-input"
-            values={"aàấafasd"}
-
+            value={"poôp"}
             // onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>
@@ -175,6 +158,10 @@ const EditInfo = () => {
         >
           <Input
             className="val-input"
+            // defaultValue={"oôoo"}
+            allowClear={true}
+            // status="warning"
+            // onPressEnter={()=>onEnterPress()}
             // onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Item>

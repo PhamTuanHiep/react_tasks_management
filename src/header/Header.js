@@ -2,12 +2,15 @@ import { Anchor } from "antd";
 import { Menu, Button, Dropdown, Space } from "antd";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { store } from "../redux/store";
 import {
   SettingOutlined,
   UserSwitchOutlined,
   DownOutlined,
 } from "@ant-design/icons";
 import "./Header.scss";
+import { useDispatch } from "react-redux";
+import { doLogout } from "../redux/action/userAction";
 const Header = () => {
   const navigate = useNavigate();
   const items = [
@@ -37,13 +40,9 @@ const Header = () => {
       ),
     },
   ];
-  // const [current, setCurrent] = useState("1");
-  // useEffect(() => {
-  //   sessionStorage.getItem("currentNav")
-  //     ? setCurrent(sessionStorage.getItem("currentNav"))
-  //     : true;
-  // }, []);
 
+  var isAuthenticated = store.getState().user.isAuthenticated;
+  const dispatch = useDispatch();
   const handleNav = (e) => {
     console.log("click ", e);
     sessionStorage.setItem("currentNav", e.key);
@@ -56,7 +55,9 @@ const Header = () => {
   const handleLogup = () => {
     navigate("/logup");
   };
-
+  const handleLogOut = () => {
+    dispatch(doLogout());
+  };
   const items2 = [
     {
       label: (
@@ -68,18 +69,23 @@ const Header = () => {
     },
     {
       label: (
-        <NavLink to="/logup" className="nav-link">
+        <NavLink to="/logup" className="nav-link" onClick={handleLogup}>
           Register
         </NavLink>
       ),
       key: "1",
     },
     {
-      label: "Logout",
+      label: (
+        <NavLink to="/login" onClick={handleLogOut}>
+          Logout
+        </NavLink>
+      ),
+
       key: "3",
     },
   ];
-  var varbole = false;
+
   return (
     <div className="header">
       <Menu
@@ -93,7 +99,7 @@ const Header = () => {
         mode="horizontal"
         items={items}
       />
-      {varbole === false ? (
+      {isAuthenticated === false ? (
         <div className="nav">
           <Button type="primary" onClick={handleLogin}>
             Login
@@ -103,7 +109,7 @@ const Header = () => {
           </Button>
         </div>
       ) : (
-        <>
+        <div className="nav">
           <Dropdown
             menu={{
               items: items2,
@@ -118,7 +124,7 @@ const Header = () => {
               </Space>
             </a>
           </Dropdown>
-        </>
+        </div>
       )}
     </div>
   );
