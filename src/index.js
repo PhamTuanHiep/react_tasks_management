@@ -6,12 +6,18 @@ import Layout from "./Layout";
 // import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "./index.scss";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
+        {/* <PerfectScrollbar> */}
         <Layout />
+        {/* </PerfectScrollbar> */}
       </BrowserRouter>
     </PersistGate>
   </Provider>

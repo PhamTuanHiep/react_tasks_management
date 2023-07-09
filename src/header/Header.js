@@ -53,6 +53,8 @@ const Header = () => {
     navigate("/login");
   };
   const handleLogup = () => {
+    dispatch(doLogout());
+    sessionStorage.clear();
     navigate("/logup");
   };
   const handleLogOut = () => {
@@ -101,15 +103,15 @@ const Header = () => {
       />
       {isAuthenticated === false ? (
         <div className="nav">
-          <Button type="primary" onClick={handleLogin}>
+          <Button className="navBtn" type="primary" onClick={handleLogin}>
             Login
           </Button>
-          <Button type="primary" onClick={handleLogup}>
+          <Button className="navBtn" type="primary" onClick={handleLogup}>
             Logup
           </Button>
         </div>
       ) : (
-        <div className="nav">
+        <div className="nav nav-setting">
           <Dropdown
             menu={{
               items: items2,

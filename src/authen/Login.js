@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { doLogin } from "../redux/action/userAction";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "../services/apiService";
-import axios from "axios";
+import { NavLink } from "react-router-dom";
+
 const Login = () => {
   // handle validation
   const layout = {
@@ -91,11 +92,18 @@ const Login = () => {
     }
   };
 
+  // const handleKeyDown = (event) => {
+  //   console.log(`event.key = ${event.key} , envent.keyCode = ${event.keyCode}`);
+  //   if (event && event.key === "Enter") {
+  //     handleLogin();
+  //   }
+  // };
   return (
     <div id="val-login" className="validation-form">
       <div className="val val-title ">
-        Sign in to experience all the features
-        <span>wellcom to My Web</span>
+        <span className="val-note">wellcom to My Web</span>
+        Sign In
+        <span className="val-note">access to experience all functions</span>
       </div>
       <Form
         className="val val-form "
@@ -121,6 +129,7 @@ const Login = () => {
           <Input
             className="val-input"
             onChange={(e) => setEmail(e.target.value)}
+            // onKeyDown={(event) => handleKeyDown(event)}
           />
         </Form.Item>
         <Form.Item
@@ -166,6 +175,11 @@ const Login = () => {
         >
           <Input.Password className="val-input" />
         </Form.Item>
+        <span>
+          <NavLink to="/" className="nav-link">
+            Go Home
+          </NavLink>
+        </span>
         <Form.Item
           wrapperCol={{
             ...layout.wrapperCol,

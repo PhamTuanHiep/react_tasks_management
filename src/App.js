@@ -1,9 +1,11 @@
 import Header from "./header/Header";
 import { Outlet } from "react-router-dom";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import axios from "axios";
-
-import "./App.css";
+import videoHomepage from "./assets/videos/video-homepage.mp4";
+import videoApp from "./assets/videos/backgroundvideo.mp4";
+import "./App.scss";
 
 const App = () => {
   console.log(theme.useToken().token.colorBgContainer);
@@ -39,14 +41,20 @@ const App = () => {
 
   return (
     <>
-      <Layout className="layout">
-        <Header />
-        <Content style={{ padding: "0 50px" }}>
+      <Layout id="layout" className="layout">
+        <Header id="header" />
+        <Content id="content" style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
-            <Outlet />
+            <video autoPlay muted loop>
+              <source src={videoApp} type="video/mp4" />
+            </video>
+            <PerfectScrollbar>
+              <Outlet />
+            </PerfectScrollbar>
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
+
+        <Footer id="footer" style={{ textAlign: "center" }}>
           Ant Design ©2023 Created by Ant UED
         </Footer>
       </Layout>

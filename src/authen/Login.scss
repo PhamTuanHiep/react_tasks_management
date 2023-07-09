@@ -14,11 +14,19 @@
   .val-title {
     margin: 16px auto;
     align-items: center;
-    font-size: 28px;
+    font-size: 36px;
     display: flex;
     flex-direction: column;
-    span {
+    margin-top: 36px;
+    .val-note {
       font-size: 14px;
+      margin-top: 12px;
+      color: #02010894;
+    }
+    .val-note:nth-child(1) {
+      margin-bottom: 24px;
+      font-size: 24px;
+      color: #020108;
     }
   }
   .val-form {
@@ -26,6 +34,7 @@
     flex-direction: column;
     justify-content: center;
     max-width: 600px;
+    margin-top: 64px;
     .val-item {
       margin-left: auto;
       margin-right: auto;
@@ -34,10 +43,14 @@
         width: 400px;
       }
     }
+    span {
+      margin: auto;
+    }
     .val-submit {
       width: 200px;
       line-height: 18px;
       height: 40px;
+      margin-top: 48px;
       span {
         font-size: 18px;
       }

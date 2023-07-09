@@ -86,7 +86,7 @@ const Logup = () => {
     <div id="val-logup" className="validation-form">
       <div className="val val-title ">
         REGISTER
-        <span>wellcom to My Web</span>
+        <span className="val-note">wellcom to My Web</span>
       </div>
       <Form
         className="val val-form "
@@ -194,7 +194,7 @@ const Logup = () => {
         >
           <Input.Password className="val-input" />
         </Form.Item>
-        <span>
+        <span className="gohome">
           <NavLink to="/" className="nav-link">
             Go Home
           </NavLink>

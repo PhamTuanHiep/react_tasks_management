@@ -1,0 +1,37 @@
+#layout {
+  // background-image: url("./assets/imgs/storehouse.jpg");
+  // background-repeat: no-repeat;
+  // background-origin: border-box;
+  // background-size: 100vw 99vh;
+  // position: relative;
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
+  #header {
+    height: 100px;
+  }
+
+  #content {
+    height: calc(100vh - 100px);
+    width: 100vw;
+    video {
+      width: 134%;
+
+      height: 113%;
+      position: absolute;
+      top: 0px;
+      left: -246px;
+
+      z-index: -1;
+    }
+  }
+  #footer {
+    position: relative;
+    left: 0;
+    bottom: 10px;
+    z-index: 4;
+    background-color: #e0e4e7;
+    color: black;
+    // opacity: 0.6;
+  }
+}

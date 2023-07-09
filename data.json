@@ -238,6 +238,22 @@
       "phone": "0987123413",
       "image": "",
       "id": 13
+    },
+    {
+      "username": "Linh",
+      "password": "123456Az",
+      "email": "user20@gmail.com",
+      "phone": "0987123412",
+      "image": "",
+      "id": 14
+    },
+    {
+      "username": "Linh",
+      "password": "123456Az",
+      "email": "user21@gmail.com",
+      "phone": "0987123412",
+      "image": "",
+      "id": 15
     }
   ]
 }

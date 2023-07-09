@@ -74,6 +74,7 @@ const Sider = (drops) => {
       <div className="demo-logo-vertical" />
 
       <Image
+        className="img-sider"
         max-width={200}
         max-height={200}
         src={

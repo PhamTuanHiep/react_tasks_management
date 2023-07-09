@@ -7,12 +7,15 @@
         width: 150px;
       }
       .head-column_button {
-        width: 150px;
+        width: 156px;
         display: flex;
         align-items: center;
         justify-content: space-around;
         font-size: 15px;
       }
+    }
+    .actions Button {
+      margin: 2px 8px 0 0;
     }
     .check-box-group {
       display: flex;

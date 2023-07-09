@@ -197,7 +197,7 @@ const TaskList = () => {
       dataIndex: "actions",
       render: (id, ob) => {
         return id == numUpdate ? (
-          <>
+          <div className="actions">
             <Button type="primary" onClick={(e) => handleUpdateSubmit(e)}>
               Submit
             </Button>
@@ -208,9 +208,9 @@ const TaskList = () => {
             >
               Cancel
             </Button>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="actions">
             <Button
               type="primary"
               danger
@@ -221,7 +221,7 @@ const TaskList = () => {
             <Button type="primary" onClick={(e) => handleUpdateTask(e, id)}>
               Update
             </Button>
-          </>
+          </div>
         );
       },
     },
