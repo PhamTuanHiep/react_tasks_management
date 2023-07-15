@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { store } from "../redux/store";
 import {
-  SettingOutlined,
+  HomeOutlined,
   UserSwitchOutlined,
   DownOutlined,
 } from "@ant-design/icons";
@@ -21,7 +21,7 @@ const Header = () => {
           Home
         </NavLink>
       ),
-      icon: <SettingOutlined />,
+      icon: <HomeOutlined />,
     },
     {
       key: "2",

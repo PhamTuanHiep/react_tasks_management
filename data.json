@@ -254,6 +254,14 @@
       "phone": "0987123412",
       "image": "",
       "id": 15
+    },
+    {
+      "username": "user",
+      "password": "123456Az",
+      "email": "user2@gmail.com",
+      "phone": "0987123412",
+      "image": "",
+      "id": 16
     }
   ]
 }

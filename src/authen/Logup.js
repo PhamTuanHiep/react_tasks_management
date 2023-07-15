@@ -19,7 +19,9 @@ const Logup = () => {
 
   const validateMessages = {
     default: "Validation error on field '${label}'",
-    required: "'${label}' is required",
+    // required: "'${label}' is required",
+    required: "'${label}' cannot be empty",
+
     enum: "'${label}' must be one of [${enum}]",
     whitespace: "'${label}' cannot be empty",
     date: {
@@ -104,7 +106,9 @@ const Logup = () => {
           rules={[
             {
               required: true,
-              message: "User Name is valid",
+              type: "string",
+              // min: 3,
+              message: "User Name only includes capital and ordinary words",
               pattern:
                 /^([a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)((\s{1}[a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)*$)/i,
             },
@@ -158,7 +162,8 @@ const Logup = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message:
+                "The password must have 8-32 characters, at least 1 capital and 1 normal word !",
               pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,32}$/g,
             },
           ]}

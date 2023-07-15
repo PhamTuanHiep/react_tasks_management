@@ -131,7 +131,7 @@ const EditInfo = (props) => {
           rules={[
             {
               required: true,
-              message: "User Name is valid",
+              message: "User Name only includes capital and ordinary words",
               pattern:
                 /^([a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)((\s{1}[a-zỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ']+)*$)/i,
             },
@@ -191,22 +191,7 @@ const EditInfo = (props) => {
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
-          <Upload
-            listType="picture-card"
-            // onChange={(e) => {
-            //   // if (e.file.status !== "uploading") {
-            //   //   let reader = new FileReader();
-            //   //   reader.onload = (e) => {
-            //   //     console.log(e.target.result);
-            //   //   };
-            //   //   reader.readAsText(e.file.originFileObj);
-            //   // }
-            //   // setImage(e.file.thumbUrl);
-            //   // var ob = e.file[0];
-            //   // console.log(typeof ob);
-            //   // console.log(ob);
-            // }}
-          >
+          <Upload listType="picture-card">
             {fileList.length >= 1 ? null : (
               <div>
                 <PlusOutlined />

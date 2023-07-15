@@ -36,11 +36,23 @@
     max-width: 600px;
     margin-top: 64px;
     .val-item {
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: 90px;
 
       .val-input {
         width: 400px;
+      }
+      :where(.css-dev-only-do-not-override-1wazalj).ant-col-16 {
+        display: block;
+        flex: 0 0 66.66666666666666%;
+        max-width: 81.66666666666666%;
+      }
+      #nest-messages_password_help {
+        display: block;
+        height: 42px;
+        .ant-form-item-explain-error {
+          font-size: 13px;
+          line-height: 1.4;
+        }
       }
     }
     span {
