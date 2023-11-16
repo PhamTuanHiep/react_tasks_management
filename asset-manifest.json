@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react_tasks_management/static/css/main.e07acc35.css",
+    "main.js": "/react_tasks_management/static/js/main.a47df5d6.js",
+    "static/media/backgroundvideo.mp4": "/react_tasks_management/static/media/backgroundvideo.b6420544e0559f37cfb2.mp4",
+    "static/media/video-homepage.mp4": "/react_tasks_management/static/media/video-homepage.64c3c874560db383e773.mp4",
+    "index.html": "/react_tasks_management/index.html",
+    "main.e07acc35.css.map": "/react_tasks_management/static/css/main.e07acc35.css.map",
+    "main.a47df5d6.js.map": "/react_tasks_management/static/js/main.a47df5d6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e07acc35.css",
+    "static/js/main.a47df5d6.js"
+  ]
+}
